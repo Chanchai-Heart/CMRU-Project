@@ -3,6 +3,23 @@ import { ref } from 'vue';
 
 const isVisible = ref(false)
 
+// ฟังก์ชันเพื่อเลื่อนกลับไปที่ด้านบน
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ฟังก์ชันเพื่อตรวจสอบว่าเลื่อนลงมามากพอหรือไม่
+function checkScrollPosition() {
+  if (window.scrollY > 200) {
+    isVisible.value = true; // แสดงปุ่มเมื่อเลื่อนลงมาถึง 200px
+  } else {
+    isVisible.value = false; // ซ่อนปุ่มเมื่ออยู่ด้านบนสุด
+  }
+}
+
+// ตรวจสอบตำแหน่ง scroll เมื่อเลื่อนหน้าจอ
+window.addEventListener('scroll', checkScrollPosition);
+
 function scrollToTravelView(event) {
   event.preventDefault();  // Prevent default anchor behavior
   const travelView = document.getElementById("travel-view");
@@ -69,6 +86,14 @@ function scrollToTravelView(event) {
     <div id="travel-view">
       <!-- Your Travel Content Here -->
     </div>
+
+    <!-- Back to Top Button -->
+    <button 
+      v-if="isVisible" 
+      @click="scrollToTop" 
+      class="fixed bottom-10 right-10 p-3 bg-blue-500 text-white rounded-full shadow-lg z-10 hover:bg-blue-600">
+      ↑
+    </button>
 
     <!-- Footer -->
     <footer class="footer footer-center bg-gradient-to-l from-[#07103E] shadow-lg text-white p-10">
