@@ -12,11 +12,6 @@ const router = createRouter({
     name: 'home',
     component: HomeView
   },
-  {
-    path: '/travel',
-    name: 'travel',
-    component: TravelView
-  }
   ],
 })
 

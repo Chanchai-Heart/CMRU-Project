@@ -40,7 +40,7 @@ const items = [
     <div class="bg-gradient-to-r from-[#4E5034] via-[#97A483] to-[#4E5034] py-10">
         <div class="text-center mb-8">
             <div class="flex flex-col items-center">
-                <div class="text-xl font-bold text-white">Travel</div>
+                <div class="text-xl font-bold text-white">Camping</div>
                 <div class="flex justify-center">
                     <div class="w-[80%] inverted-pyramid text-4xl font-bold text-white">Welcome to the most popular
                         camping spots in Chiang Mai</div>
@@ -55,7 +55,7 @@ const items = [
                     <div
                         class="bg-white text-white rounded-lg overflow-hidden shadow-lg transform hover:scale-100 transition-all duration-300">
                         <img :src="item.image" :alt="item.title" class="w-full h-48 object-cover" />
-                        <div class=" p-4">
+                        <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2 text-gray-800">{{ item.title }}</h3>
                             <p class="text-gray-800 mb-4 ">{{ item.description }}</p>
                             <!-- Dynamic Rating -->
