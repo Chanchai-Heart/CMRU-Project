@@ -40,22 +40,22 @@ const items = [
     <div class="bg-gradient-to-r from-[#4E5034] via-[#97A483] to-[#4E5034] py-10">
         <div class="text-center">
             <div class="flex flex-col items-center">
-                <div class="text-xl font-bold text-white">Travel</div>
-                <div class="flex justify-center">
-                    <div class="inverted-pyramid text-3xl md:text-4xl font-bold text-white px-4 sm:px-8">
-                        Discover the stunning mountain views of Chiang Mai!
+                <div class="text-lg sm:text-xl font-bold text-white">Camping</div>
+                <div class="flex justify-center px-4">
+                    <div class="inverted-pyramid text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+                        Camp under the stars in Chiang Mai's beautiful nature!
                     </div>
                 </div>
             </div>
-            <div class="text-base md:text-lg text-white mt-4 inverted-pyramid px-6 sm:px-12 md:px-16">
-                เชียงใหม่คือจุดหมายปลายทางที่สมบูรณ์แบบสำหรับผู้ที่หลงใหลในธรรมชาติและวิวทิวทัศน์อันงดงาม
-                บนดอยสูงที่รายล้อมด้วยป่าเขียวขจี นักท่องเที่ยวจะได้สัมผัสอากาศบริสุทธิ์
-                ชมพระอาทิตย์ขึ้นท่ามกลางทะเลหมอก และเพลิดเพลินกับบรรยากาศที่เงียบสงบและเย็นสบาย
-                ไม่ว่าจะเป็นจุดชมวิวอันโดดเด่นหรือเส้นทางเดินป่าผจญภัย
-                ที่นี่คือสถานที่ที่ผสานความงามของธรรมชาติเข้ากับเสน่ห์วัฒนธรรมล้านนาได้อย่างลงตัว
+            <div class="text-base sm:text-lg text-white mt-4 px-6 sm:px-8 md:px-12">
+                เชียงใหม่เป็นจุดหมายยอดเยี่ยมสำหรับการกางเต็นท์ท่ามกลางธรรมชาติ ไม่ว่าจะเป็นดอยสูงหรือป่าเขียวขจี
+                คุณจะได้สัมผัสอากาศเย็นสบาย ทะเลหมอกยามเช้า
+                และบรรยากาศเงียบสงบที่ช่วยให้คุณหลีกหนีจากความวุ่นวายของเมือง
+                ล้อมรอบด้วยวิวสวยๆ ที่ทำให้การพักผ่อนกลายเป็นประสบการณ์ที่น่าจดจำ
+                เตรียมเต็นท์และออกเดินทางไปสัมผัสความงามของธรรมชาติเชียงใหม่กัน!
             </div>
         </div>
-        <div class="max-w-screen-xl mx-auto px-4 sm:px-6">
+        <div class="max-w-screen-xl mx-auto mt-8">
             <swiper :slides-per-view="1" :space-between="20" grab-cursor="true" loop="true" class="swiper-container"
                 effect="slide" autoplay="true" :breakpoints="{
                     640: { slidesPerView: 1 },
@@ -65,9 +65,9 @@ const items = [
                 <swiper-slide v-for="(item, index) in items" :key="index" class="swiper-slide">
                     <div
                         class="bg-white text-white rounded-lg overflow-hidden shadow-lg transform hover:scale-100 transition-transform duration-300">
-                        <img :src="item.image" :alt="item.title" class="w-full h-48 object-cover" />
+                        <img :src="item.image" :alt="item.title" loading="lazy" class="w-full h-48 object-cover" />
                         <div class="p-4">
-                            <h3 class="text-xl font-semibold mb-2 text-gray-800">
+                            <h3 class="text-lg sm:text-xl font-semibold mb-2 text-gray-800">
                                 {{ item.title }}
                             </h3>
                             <p class="text-gray-800 mb-4">
@@ -75,6 +75,7 @@ const items = [
                                     ? item.description.slice(0, 120) + "..."
                                     : item.description }}
                             </p>
+                            <!-- Dynamic Rating -->
                             <div class="flex items-center mb-4">
                                 <div class="rating flex">
                                     <template v-for="n in 5" :key="n">
@@ -98,8 +99,9 @@ const items = [
                 </swiper-slide>
             </swiper>
         </div>
-        <div class="flex justify-center my-4">
-            <a href="#" class="flex items-center justify-between text-white group">
+        <div class="flex justify-center mt-6">
+            <a href="#" class="flex items-center justify-between text-white group"
+                aria-label="See more camping details">
                 <p class="text-lg mr-4 transition-transform duration-300 group-hover:translate-x-2">
                     See more
                 </p>
