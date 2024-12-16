@@ -1,7 +1,36 @@
 <script setup>
 import { ref } from 'vue';
 
-const isVisible = ref(false)
+// ตัวแปรจัดการแสดงผล Navbar
+const isHidden = ref(false);
+const lastScrollPosition = ref(0);
+const hasBackground = ref(false);
+
+// ตรวจสอบการเลื่อนหน้าจอ
+function handleScroll() {
+  const currentScroll = window.scrollY;
+
+  if (currentScroll > lastScrollPosition.value && currentScroll > 50) {
+    isHidden.value = true; // ซ่อน Navbar เมื่อเลื่อนลง
+  } else {
+    isHidden.value = false; // แสดง Navbar เมื่อเลื่อนขึ้น
+  }
+
+  lastScrollPosition.value = currentScroll;
+
+  // เพิ่ม background เมื่อถึง Travel Section
+  const travelSection = document.getElementById('travel-view');
+  if (travelSection) {
+    const travelTop = travelSection.offsetTop;
+    hasBackground.value = currentScroll >= travelTop - 50; // เพิ่ม background เมื่อถึง Travel Section
+  }
+}
+
+// เพิ่ม event listener สำหรับ scroll
+window.addEventListener("scroll", handleScroll);
+
+// ตัวแปรสำหรับควบคุมการแสดงผลเมนู Hamburger
+const isMenuOpen = ref(false);
 
 // ฟังก์ชันเพื่อเลื่อนกลับไปที่ด้านบน
 function scrollToTop() {
@@ -9,81 +38,77 @@ function scrollToTop() {
 }
 
 // ฟังก์ชันเพื่อตรวจสอบว่าเลื่อนลงมามากพอหรือไม่
+const isVisible = ref(false);
 function checkScrollPosition() {
-  if (window.scrollY > 200) {
-    isVisible.value = true;
-  } else {
-    isVisible.value = false;
+  isVisible.value = window.scrollY > 200;
+}
+window.addEventListener('scroll', checkScrollPosition);
+
+// ฟังก์ชันสำหรับเลื่อนหน้าไปยัง Section ที่ต้องการ
+function scrollToSection(event) {
+  event.preventDefault();
+
+  const targetId = event.target.getAttribute('href');
+  if (targetId && targetId.startsWith('#')) {
+    const targetElement = document.querySelector(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }
 
-// ตรวจสอบตำแหน่ง scroll เมื่อเลื่อนหน้าจอ
-window.addEventListener('scroll', checkScrollPosition);
-
-function scrollToTravelView(event) {
-  event.preventDefault();
-
-  // หาค่าของ element ตาม ID
-  const targetId = event.target.getAttribute("href").substring(1);
-  const targetElement = document.getElementById(targetId);
-
-  // ถ้าเจอ element ให้เลื่อนไป
-  if (targetElement) {
-    targetElement.scrollIntoView({ behavior: "smooth" });
-  }
+// ฟังก์ชันเปิด/ปิดเมนู Hamburger
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value;
+  console.log('Hamburger Menu Toggled:', isMenuOpen.value);
 }
 </script>
 
 <template>
   <main>
     <!-- Navbar -->
-    <div class="navbar text-white absolute top-0 left-0 w-full z-10 justify-between">
-      <div class="flex">
+    <nav class="navbar fixed top-0 left-0 w-full z-10 px-4 sm:px-6 lg:px-12 transition-transform duration-300"
+      :class="{ '-translate-y-full': isHidden, 'bg-[#2D2D2D] text-white': hasBackground, 'text-white': !hasBackground }">
+      <!-- Logo and Title -->
+      <div class="flex items-center">
         <a href="/">
-          <img class="w-28 mr-2 " src="/src/assets/icons/Logo.png">
+          <img class="w-20 sm:w-28 mr-2" src="/src/assets/icons/Logo.png" alt="Logo" />
         </a>
-        <a class="text-2xl font-bold bg-white bg-clip-text text-transparent drop-shadow-md">
+        <span class="text-xl sm:text-2xl font-bold bg-white bg-clip-text text-transparent drop-shadow-md">
           Live the Adventure
-        </a>
+        </span>
       </div>
-      <div>
-        <ul class="menu menu-horizontal p-0 text-[16px] font-semibold gap-8">
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="#travel-view" @click="scrollToTravelView">Travel</a>
-          </li>
-          <li>
-            <a href="#camp-view" @click="scrollToTravelView">Camping</a>
-          </li>
-          <li>
-            <a href="#about-view" @click="scrollToTravelView">About</a>
-          </li>
-          <li>
-            <a href="#contact-view" @click="scrollToTravelView">Contact</a>
-          </li>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex ml-auto">
+        <ul class="menu menu-horizontal p-0 text-sm sm:text-base lg:text-lg font-semibold gap-6 lg:gap-8">
+          <li><a href="/">Home</a></li>
+          <li><a href="#travel-view" @click="scrollToSection">Travel</a></li>
+          <li><a href="#camp-view" @click="scrollToSection">Camping</a></li>
+          <li><a href="#about-view" @click="scrollToSection">About</a></li>
+          <li><a href="#contact-view" @click="scrollToSection">Contact</a></li>
         </ul>
       </div>
-      <div class="flex-none gap-2">
-        <div class="form-control">
-          <input type="text" placeholder="Search"
-            class="input input-bordered input-ghost w-full max-w-xs text-black placeholder-white focus:placeholder-slate-400" />
-        </div>
-        <div class="dropdown dropdown-end">
-          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full">
-              <img alt="User avatar" src="../assets/icons/h1.jpg" />
-            </div>
-          </div>
-          <ul tabindex="0"
-            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black">
-            <li><a>Profile</a></li>
-            <li><a>Logout</a></li>
+
+      <!-- Hamburger Menu -->
+      <div class="lg:hidden flex items-center ml-auto">
+        <button class="btn btn-ghost btn-circle" @click="toggleMenu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+        <div v-if="isMenuOpen" class="absolute top-16 right-4 bg-white text-black rounded shadow-lg p-4">
+          <ul class="flex flex-col space-y-2">
+            <li><a href="/" @click="toggleMenu">Home</a></li>
+            <li><a href="#travel-view" @click="scrollToSection; toggleMenu">Travel</a></li>
+            <li><a href="#camp-view" @click="scrollToSection; toggleMenu">Camping</a></li>
+            <li><a href="#about-view" @click="scrollToSection; toggleMenu">About</a></li>
+            <li><a href="#contact-view" @click="scrollToSection; toggleMenu">Contact</a></li>
           </ul>
         </div>
       </div>
-    </div>
+    </nav>
     <!-- /Navbar -->
 
     <!-- Background Image -->
@@ -114,20 +139,21 @@ function scrollToTravelView(event) {
 
     <div id="contact-view">
       <!-- Footer -->
-      <footer class="footer text-neutral-content p-10 bg-[#2D2D2D] justify-around">
-        <aside>
-          <img class="w-36" src="/src/assets/icons/Logo.png">
-          <p>
+      <footer
+        class="footer text-neutral-content p-10 bg-[#2D2D2D] flex flex-wrap gap-8 lg:justify-around justify-start">
+        <aside class="w-full lg:w-auto justify-center">
+          <img class="w-36 mx-auto lg:mx-0" src="/src/assets/icons/Logo.png" alt="ACME Logo">
+          <p class="text-center lg:text-left">
             ACME Industries Ltd.
             <br />
             Providing reliable tech since 2024
           </p>
         </aside>
-        <nav>
+        <nav class="w-full lg:w-auto">
           <!-- Contact -->
           <div class="flex flex-col">
-            <p class="text-xl font-bold mb-4">Contact</p>
-            <div class="grid grid-cols-3 gap-6">
+            <p class="text-xl font-bold mb-4 lg:text-left">Contact</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <div class="flex gap-4 items-center">
                 <svg class="w-6 h-6 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <path
@@ -160,13 +186,11 @@ function scrollToTravelView(event) {
               </div>
             </div>
           </div>
-          <div>
-          </div>
         </nav>
-        <!-- social media -->
-        <div>
-          <p class="text-xl font-bold mb-4">Social Media</p>
-          <div class="grid grid-cols-3 gap-4">
+        <!-- Social Media -->
+        <div class="w-full lg:w-auto">
+          <p class="text-xl font-bold mb-4 text-center lg:text-left">Social Media</p>
+          <div class="flex justify-center lg:justify-start gap-4">
             <a href="https://www.facebook.com/chanchai.janhom.7?locale=th_TH" target="_blank">
               <svg class="w-10 h-10 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path
@@ -192,3 +216,15 @@ function scrollToTravelView(event) {
     </div>
   </main>
 </template>
+
+<style>
+/* เมื่อ hover ให้ Navbar แสดงอีกครั้ง */
+.navbar:hover {
+  transform: translateY(0) !important;
+}
+
+/* Default transition */
+.navbar {
+  transition: transform 0.3s ease-in-out;
+}
+</style>

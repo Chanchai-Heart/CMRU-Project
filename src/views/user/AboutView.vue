@@ -9,11 +9,12 @@
             <div class="text-center mb-8">
                 <div class="flex flex-col items-center">
                     <div class="text-xl font-bold text-white">About</div>
-                    <div class="text-4xl font-bold text-white">Camping and Accommodation in Chiang Mai
+                    <div class="inverted-pyramid text-2xl sm:text-3xl md:text-4xl font-bold text-white">Camping and
+                        Accommodation in Chiang Mai
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <div class="text-lg text-white mt-4 inverted-pyramid px-24">
+                    <div class="text-base sm:text-lg text-white mt-4 px-6 sm:px-8 md:px-12">
                         การกางเต็นท์ในเชียงใหม่เป็นกิจกรรมที่เหมาะสำหรับผู้ที่รักธรรมชาติและต้องการสัมผัสประสบการณ์การพักผ่อนท่ามกลางป่าเขียวขจีและอากาศเย็นสบาย
                         โดยคุณสามารถเลือกกางเต็นท์ในจุดกางเต็นท์ที่มีสิ่งอำนวยความสะดวกครบครัน
                         หรือเลือกพื้นที่ที่ให้ความเป็นส่วนตัวมากขึ้นในธรรมชาติที่ยังคงความดิบ
@@ -22,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex justify-between items-center text-center p-10 text-white">
+            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-6 text-center p-10 text-white">
                 <!-- Camper Sites -->
                 <div class="flex flex-col items-center">
                     <div class="fill-white">
@@ -33,9 +34,6 @@
                     </div>
                     <p class="text-lg font-bold">CAMPER SITES</p>
                 </div>
-
-                <!-- Divider -->
-                <div class="h-16 w-px bg-gray-300"></div>
 
                 <!-- Caravan Sites -->
                 <div class="flex flex-col items-center">
@@ -48,9 +46,6 @@
                     <p class="text-lg font-bold">CARAVAN SITES</p>
                 </div>
 
-                <!-- Divider -->
-                <div class="h-16 w-px bg-gray-300"></div>
-
                 <!-- Tent Sites -->
                 <div class="flex flex-col items-center">
                     <div class="fill-white">
@@ -61,9 +56,6 @@
                     </div>
                     <p class="text-lg font-bold">TENT SITES</p>
                 </div>
-
-                <!-- Divider -->
-                <div class="h-16 w-px bg-gray-300"></div>
 
                 <!-- Camp Sites -->
                 <div class="flex flex-col items-center">
@@ -76,18 +68,30 @@
                     <p class="text-lg font-bold">CAMP SITES</p>
                 </div>
 
-                <!-- Divider -->
-                <div class="h-16 w-px bg-gray-300"></div>
-
                 <!-- Cabin Houses -->
                 <div class="flex flex-col items-center">
                     <div class="fill-white">
                         <svg class="w-24 h-24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                             <path
-                                d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z" />
+                                d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24L224 448l0 24c0 22.1-17.9 40-40 40L160 512l-13.3 0c-1.4 0-2.8 0-4.2-.1c-1.1 .1-2.2 .1-3.3 .1l-16 0c-22.1 0-40-17.9-40-40l0-16.2c-.3-2.7-.5-5.4-.5-8.1l.7-160.2-32 0c-17 0-32-14-32-32.1c0-10.1 4.9-19.5 13.1-25.5L266.4 4.6c11.2-7.5 25.9-7.5 37.1 0L562.7 230c8.2 6 13.1 15.4 13.1 25.5z" />
                         </svg>
                     </div>
                     <p class="text-lg font-bold">CABIN HOUSES</p>
+                </div>
+
+                <!-- Restaurant -->
+                <div class="flex flex-col items-center">
+                    <div class="fill-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="h-24 w-24 lucide lucide-utensils-crossed">
+                            <path d="m16 2-2.3 2.3a3 3 0 0 0 0 4.2l1.8 1.8a3 3 0 0 0 4.2 0L22 8" />
+                            <path d="M15 15 3.3 3.3a4.2 4.2 0 0 0 0 6l7.3 7.3c.7.7 2 .7 2.8 0L15 15Zm0 0 7 7" />
+                            <path d="m2.1 21.8 6.4-6.3" />
+                            <path d="m19 5-7 7" />
+                        </svg>
+                    </div>
+                    <p class="text-lg font-bold">RESTAURANT</p>
                 </div>
             </div>
         </div>

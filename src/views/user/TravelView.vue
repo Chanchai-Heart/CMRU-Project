@@ -42,7 +42,7 @@ const items = [
             <div class="flex flex-col items-center">
                 <div class="text-xl font-bold text-white">Travel</div>
                 <div class="flex justify-center">
-                    <div class="inverted-pyramid text-3xl md:text-4xl font-bold text-white px-4 sm:px-8">
+                    <div class="inverted-pyramid text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                         Discover the stunning mountain views of Chiang Mai!
                     </div>
                 </div>
