@@ -1,18 +1,30 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
+import { createWebHistory, createRouter } from 'vue-router';
 
-import HomeView from '../views/user/HomeView.vue'
-import TravelView from '../views/user/TravelView.vue';
+import HomeView from '../views/user/HomeView.vue';
 
+import AdminLogin from '../views/admin/LoginView.vue';
+import AdminDashboard from '../views/admin/DashboardView.vue';
 
 const router = createRouter({
-  history: createMemoryHistory(),
-  routes:[
+  history: createWebHistory(),
+  routes: [
     {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
+      path: '/',
+      name: 'home',
+      component: HomeView,
+    },
+    /* Admin Routes */
+    {
+      path: '/admin/login',
+      name: 'admin-login',
+      component: AdminLogin,
+    },
+    {
+      path: '/admin/dashboard',
+      name: 'admin-dashboard',
+      component: AdminDashboard,
+    },
   ],
-})
+});
 
 export default router;
