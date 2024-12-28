@@ -4,6 +4,6 @@ import AdminLayout from '../../../layout/AdminLayout.vue';
 
 <template>
     <AdminLayout>
-        <h1>Travel List</h1>
+        <h1>User List</h1>
     </AdminLayout>
 </template>
