@@ -1,4 +1,6 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
 </script>
 
 <template>
@@ -44,7 +46,7 @@
           </svg>
           <input type="password" class="grow" placeholder="Password" />
         </label>
-        <button class="btn btn-primary w-1/3">Login</button>
+        <RouterLink :to="{ name: 'admin-dashboard'}" class="btn btn-primary w-1/3">Login</RouterLink>
       </div>
     </div>
   </div>
