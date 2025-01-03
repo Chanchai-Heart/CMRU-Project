@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from "vue-router";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper-bundle.css";
 
@@ -100,8 +101,7 @@ const items = [
             </swiper>
         </div>
         <div class="flex justify-center mt-6">
-            <a href="#" class="flex items-center justify-between text-white group"
-                aria-label="See more camping details">
+            <RouterLink :to="{ name: 'camp-detail' }" class="flex items-center justify-between text-white group">
                 <p class="text-lg mr-4 transition-transform duration-300 group-hover:translate-x-2">
                     See more
                 </p>
@@ -111,7 +111,7 @@ const items = [
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />
                 </svg>
-            </a>
+            </RouterLink>
         </div>
     </div>
 </template>

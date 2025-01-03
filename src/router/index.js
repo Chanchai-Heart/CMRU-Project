@@ -1,6 +1,8 @@
 import { createWebHistory, createRouter } from 'vue-router';
 
 import HomeView from '../views/user/HomeView.vue';
+import TravelDetailView from '../views/user/main/TravelDetailView.vue';
+import CampDetailView from '../views/user/main/CampDetailView.vue';
 
 import AdminLogin from '../views/admin/LoginView.vue';
 import AdminDashboard from '../views/admin/DashboardView.vue';
@@ -21,6 +23,16 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
+    },
+    {
+      path: '/travel/detail',
+      name: 'travel-detail',
+      component: TravelDetailView,
+    },
+    {
+      path: '/camp/detail',
+      name: 'camp-detail',
+      component: CampDetailView,
     },
     /* Admin Routes */
     {
